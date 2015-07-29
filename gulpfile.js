@@ -46,8 +46,9 @@ gulp.task('sass-optimize', function(){
 gulp.task('server', function(){
 	browserSync.init({
 		server: {
-			baseDir: "./"
+			baseDir: "./",
+			directory: true
 		}
 	});
-	gulp.watch(['assets/sass/*.sass'], ['sass']);
+	gulp.watch(['assets/sass/*.sass'], ['sass', browserSync.reload]);
 });
