@@ -1,0 +1,2 @@
+# gulpImplementationTest
+チーム内でgulpを導入するための練習用リポジトリ
