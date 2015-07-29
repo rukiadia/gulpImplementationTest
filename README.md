@@ -10,3 +10,6 @@
 ```
 npm install --save-dev
 ```
+
+## 参考にした資料
+[現場で使えるgulp入門](https://app.codegrid.net/entry/gulp-1)

@@ -8,12 +8,20 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var minify = require('gulp-minify-css');
+var notify = require('gulp-notify');
+var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync').create();
 
+/* plumber + notify */
+var plumberWithNotify = function(){
+	return plumber({errorHandler: notify.onError("<%= error.message %>")});
+}
+
 gulp.task('sass', function(){
 	return gulp.src('assets/sass/*.sass')
+		.pipe(plumberWithNotify())
 		.pipe(sass().on('error', sass.logError))
 		.pipe(gulp.dest('assets/css/'));
 });
