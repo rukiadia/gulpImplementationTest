@@ -13,7 +13,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.0.3",
     "gulp-stylus": "^2.0.5",
-    "stylus": "^0.52.0"
+    "stylus": "^0.52.0",
+    "run-sequence": "1.1.2"
   },
   "scripts": {
     "start": "npm install && gulp build",
