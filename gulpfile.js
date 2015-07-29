@@ -1,21 +1,24 @@
 /**
  * Created by s.yamada on 2015/07/29
  */
+
+'use strict';
+
 var gulp = require('gulp');
-var stylus = require('gulp-stylus');
+var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var minify = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var browserSync = require('browser-sync').create();
 
-gulp.task('stylus', function(){
-	return gulp.src('styl/**/*.styl')
-		.pipe(stylus())
-		.pipe(gulp.dest('css/'))
+gulp.task('sass', function(){
+	return gulp.src('assets/sass/*.sass')
+		.pipe(sass().on('error', sass.logError))
+		.pipe(gulp.dest('assets/css/'))
 		.pipe(concat('all.css'))
 		.pipe(minify())
 		.pipe(rename({extname: '.min.css'}))
-		.pipe(gulp.dest('css/minify/'))
+		.pipe(gulp.dest('assets/css/minify/'))
 });
 
 gulp.task('server', function(){
@@ -24,5 +27,5 @@ gulp.task('server', function(){
 			baseDir: "./"
 		}
 	});
-	gulp.watch(['styl/**/*.styl'], ['stylus']);
+	gulp.watch(['assets/sass/*.sass'], ['sass']);
 });
