@@ -10,8 +10,9 @@ var rename = require('gulp-rename');
 gulp.task('stylus', function(){
 	return gulp.src('styl/**/*.styl')
 		.pipe(stylus())
+		.pipe(gulp.dest('css/'))
 		.pipe(concat('all.css'))
 		.pipe(minify())
 		.pipe(rename({extname: '.min.css'}))
-		.pipe(gulp.dest('css/'));
+		.pipe(gulp.dest('css/minify/'));
 });
