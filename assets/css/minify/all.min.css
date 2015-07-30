@@ -1,1 +1,1 @@
-body{background:#000}.headline{font-size:28px;color:#FFF000}.detail{font-size:10px;color:#0F0}
+body{background:#000}.headline{font-size:28px;color:#FFF000}.circle{background:#00E;width:60px;height:60px;border-radius:30px;-webkit-transition-duration:1s;transition-duration:1s}.circle:hover{background:#fff;width:120px;height:120px;border-radius:120px}.detail{font-size:10px;color:#0F0}

@@ -11,6 +11,7 @@ var minify = require('gulp-minify-css');
 var notify = require('gulp-notify');
 var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
+var autoprefixer = require('gulp-autoprefixer');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync').create();
 
@@ -19,10 +20,21 @@ var plumberWithNotify = function(){
 	return plumber({errorHandler: notify.onError("<%= error.message %>")});
 }
 
+/* target browser list for autoprefixer */
+var targetBrowsers = [
+	'ie >= 9',
+	'ff >= 39',
+	'chrome >= 40',
+	'safari >= 7',
+	'ios >= 7',
+	'android >= 4.0'
+]
+
 gulp.task('sass', function(){
 	return gulp.src('assets/sass/*.sass')
 		.pipe(plumberWithNotify())
 		.pipe(sass().on('error', sass.logError))
+		.pipe(autoprefixer({browsers: targetBrowsers, cascade: true}))
 		.pipe(gulp.dest('assets/css/'));
 });
 
@@ -46,8 +58,7 @@ gulp.task('sass-optimize', function(){
 gulp.task('server', function(){
 	browserSync.init({
 		server: {
-			baseDir: "./",
-			directory: true
+			baseDir: "./"
 		}
 	});
 	gulp.watch(['assets/sass/*.sass'], ['sass', browserSync.reload]);
