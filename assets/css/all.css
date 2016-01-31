@@ -1,0 +1,94 @@
+/* margin padding reset */
+body, div, p, ul, ol, li, dl, dt, dd, table, th, td, img, figure,
+h1, h2, h3, h4, h5, h6, form, select {
+  margin: 0;
+  padding: 0; }
+
+/* remove list point mark */
+ul,
+ol {
+  list-style: none; }
+
+/* remove border */
+img {
+  border: 0; }
+
+/* remove descender */
+img,
+svg,
+input,
+select,
+textarea,
+label {
+  vertical-align: middle; }
+
+/* set collapse */
+table {
+  border-collapse: collapse; }
+
+/* off bold */
+h1, h2, h3, h4, h5, h6, th, em, strong {
+  font-weight: normal; }
+
+/* break word for all elements */
+*,
+*:before,
+*:after {
+  word-break: break-all; }
+
+pre {
+  white-space: pre-wrap; }
+
+body {
+  background: #EEEEEE; }
+
+.circle {
+  background: #0000EE;
+  width: 60px;
+  height: 60px;
+  -webkit-transition-duration: 1.0s;
+          transition-duration: 1.0s; }
+  .circle :hover {
+    border-radius: 25%;
+    opacity: 0.6; }
+
+/* margin padding reset */
+body, div, p, ul, ol, li, dl, dt, dd, table, th, td, img, figure,
+h1, h2, h3, h4, h5, h6, form, select {
+  margin: 0;
+  padding: 0; }
+
+/* remove list point mark */
+ul,
+ol {
+  list-style: none; }
+
+/* remove border */
+img {
+  border: 0; }
+
+/* remove descender */
+img,
+svg,
+input,
+select,
+textarea,
+label {
+  vertical-align: middle; }
+
+/* set collapse */
+table {
+  border-collapse: collapse; }
+
+/* off bold */
+h1, h2, h3, h4, h5, h6, th, em, strong {
+  font-weight: normal; }
+
+/* break word for all elements */
+*,
+*:before,
+*:after {
+  word-break: break-all; }
+
+pre {
+  white-space: pre-wrap; }
