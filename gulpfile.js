@@ -1,19 +1,15 @@
-/**
- * Created by s.yamada on 2015/07/29
- */
-
 'use strict';
 
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var minify = require('gulp-minify-css');
-var notify = require('gulp-notify');
-var plumber = require('gulp-plumber');
-var rename = require('gulp-rename');
-var autoprefixer = require('gulp-autoprefixer');
-var runSequence = require('run-sequence');
-var browserSync = require('browser-sync').create();
+var gulp = require('gulp'),
+		sass = require('gulp-sass'),
+		concat = require('gulp-concat'),
+		cssnano = require('gulp-cssnano'),
+		notify = require('gulp-notify'),
+		plumber = require('gulp-plumber'),
+		rename = require('gulp-rename'),
+		autoprefixer = require('gulp-autoprefixer'),
+		runSequence = require('run-sequence'),
+		browserSync = require('browser-sync').create();
 
 /* plumber + notify */
 var plumberWithNotify = function(){
@@ -23,15 +19,15 @@ var plumberWithNotify = function(){
 /* target browser list for autoprefixer */
 var targetBrowsers = [
 	'ie >= 9',
-	'ff >= 39',
-	'chrome >= 40',
-	'safari >= 7',
-	'ios >= 7',
+	'last 2 Chrome versions',
+	'last 2 Firefox versions',
+	'last 2 Safari versions',
+	'ios >= 8',
 	'android >= 4.0'
 ]
 
-gulp.task('sass', function(){
-	return gulp.src('assets/sass/*.sass')
+gulp.task('scss', function(){
+	return gulp.src('assets/scss/*.scss')
 		.pipe(plumberWithNotify())
 		.pipe(sass().on('error', sass.logError))
 		.pipe(autoprefixer({browsers: targetBrowsers, cascade: true}))
@@ -42,7 +38,7 @@ gulp.task('optimize', function(){
 	return gulp.src('assets/css/*.css')
 		.pipe(concat('all.css'))
 		.pipe(gulp.dest('assets/css/'))
-		.pipe(minify())
+		.pipe(cssnano())
 		.pipe(rename({extname: '.min.css'}))
 		.pipe(gulp.dest('assets/css/minify/'))
 });
@@ -50,7 +46,7 @@ gulp.task('optimize', function(){
 // run-sequenceでタスクの実行順序を制御
 gulp.task('sass-optimize', function(){
 	runSequence(
-		'sass',
+		'scss',
 		'optimize'
 	);
 });
@@ -61,5 +57,5 @@ gulp.task('server', function(){
 			baseDir: "./"
 		}
 	});
-	gulp.watch(['assets/sass/*.sass'], ['sass', browserSync.reload]);
+	gulp.watch(['assets/scss/*.scss'], ['scss', browserSync.reload]);
 });
