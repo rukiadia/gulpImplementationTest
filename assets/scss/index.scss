@@ -1,3 +1,18 @@
+//
+// Buttons
+//
+// 標準的なボタンとして使用する。
+// 特徴的な条件のない、普通のフォームやページ内でユーザに
+// アクションを求める場面でサイト内の多くの場所で用いる。
+//
+// .btn-primary - primary blue.
+// .btn-success - success green.
+//
+// Markup:
+// <button class="btn {$modifiers}">Button</button>
+//
+// Styleguide 1.0.0
+
 @import "reset";
 @import "color";
 
@@ -15,6 +30,7 @@ body {
 .btn-group {
   margin: 20px 0 0 0;
 }
+
 .btn {
   display: inline-block;
   border: 1px solid transparent;

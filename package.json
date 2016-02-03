@@ -14,6 +14,7 @@
     "gulp-plumber": "~1.0.1",
     "gulp-rename": "~1.2.2",
     "gulp-sass": "~2.1.1",
+    "gulp-kss": "*",
     "run-sequence": "~1.1.5"
   },
   "scripts": {

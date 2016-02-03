@@ -7,6 +7,7 @@ var gulp = require('gulp'),
 		notify = require('gulp-notify'),
 		plumber = require('gulp-plumber'),
 		rename = require('gulp-rename'),
+		gulpkss = require('gulp-kss'),
 		autoprefixer = require('gulp-autoprefixer'),
 		runSequence = require('run-sequence'),
 		browserSync = require('browser-sync').create();
@@ -38,6 +39,8 @@ gulp.task('optimize', function(){
 	return gulp.src('assets/css/*.css')
 		.pipe(concat('all.css'))
 		.pipe(gulp.dest('assets/css/'))
+		.pipe(concat('style.css'))
+		.pipe(gulp.dest('styleguide/public/'))
 		.pipe(cssnano())
 		.pipe(rename({extname: '.min.css'}))
 		.pipe(gulp.dest('assets/css/minify/'))
@@ -47,15 +50,26 @@ gulp.task('optimize', function(){
 gulp.task('sass-optimize', function(){
 	runSequence(
 		'scss',
-		'optimize'
+		'optimize',
+		'kssBuild'
 	);
 });
 
-gulp.task('server', function(){
+// スタイルガイド生成
+gulp.task('kssBuild', function() {
+	/* CSSファイルのコメントをスタイルガイドのHTMLとして出力 */
+	gulp.src('assets/scss/*.scss')
+			.pipe(gulpkss({
+				overview: 'styleguide/styleguide.md',
+			}))
+			.pipe(gulp.dest('styleguide/'));
+});
+
+gulp.task('server', ['scss'], function(){
 	browserSync.init({
 		server: {
 			baseDir: "./"
 		}
 	});
-	gulp.watch(['assets/scss/*.scss'], ['scss', browserSync.reload]);
+	gulp.watch(['**/*.html' ,'assets/scss/*.scss'], ['scss', browserSync.reload]);
 });
